@@ -1,0 +1,40 @@
+import type { Opportunity } from "@/types";
+
+export const featuredOpportunities: Opportunity[] = [
+  {
+    title: "Programa de Refuerzo Escolar",
+    foundation: "Fundacion Gotitas de Luz",
+    location: "Cali",
+    mode: "Presencial",
+    type: "Voluntariado en educacion",
+    duration: "3 meses",
+    schedule: "Mar y jue, turno tarde",
+    impact: "Acompana a 25 ninos con tareas, lectura y actividades creativas.",
+    badge: "120 inscritos",
+    accent: "bg-[var(--color-highlight)]",
+  },
+  {
+    title: "Practica en Marketing Digital",
+    foundation: "Asociacion Planeta Vivo",
+    location: "Medellin",
+    mode: "Hibrido",
+    type: "Practica profesional",
+    duration: "6 meses",
+    schedule: "Horario flexible",
+    impact: "Impulsa campanas ambientales, contenido social y alianzas de marca.",
+    badge: "60 inscritos",
+    accent: "bg-[var(--color-accent)]",
+  },
+  {
+    title: "Siembra de Arboles Urbanos",
+    foundation: "Fundacion EcoRaices",
+    location: "Bogota",
+    mode: "Sabados",
+    type: "Voluntariado ambiental",
+    duration: "8 jornadas",
+    schedule: "Mananas",
+    impact: "Participa en jornadas de restauracion y acompanamiento comunitario.",
+    badge: "18 cupos abiertos",
+    accent: "bg-[var(--color-ocean)]",
+  },
+];
