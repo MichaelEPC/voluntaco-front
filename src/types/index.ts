@@ -1,5 +1,6 @@
-// Barrel file — re-exports all domain types so consumers can keep
-// importing from "@/types" regardless of where a type is defined.
+// Archivo barrel — reexporta todos los tipos de dominio para que los
+// consumidores sigan pudiendo importar desde "@/types" sin importar
+// donde este definido cada tipo.
 
 export * from "./opportunity";
 export * from "./dashboard";

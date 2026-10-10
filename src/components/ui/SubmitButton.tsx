@@ -9,8 +9,8 @@ interface SubmitButtonProps {
 }
 
 /**
- * Must be rendered inside a <form> element.
- * Reads the enclosing form's pending state via useFormStatus.
+ * Debe renderizarse dentro de un elemento <form>.
+ * Lee el estado pendiente del formulario contenedor via useFormStatus.
  */
 export default function SubmitButton({
   label,

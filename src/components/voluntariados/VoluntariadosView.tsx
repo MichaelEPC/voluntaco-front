@@ -8,7 +8,7 @@ import SubmitButton from "@/components/ui/SubmitButton";
 import type { Voluntariado, Modalidad, VoluntarioRol, VoluntariadoEstado, Habilidad } from "@/types";
 import type { VoluntariadoFormState } from "@/lib/validations/voluntariado";
 
-// ── Display helpers ──────────────────────────────────────────────────────────
+// ── Funciones de visualización ───────────────────────────────────────────────
 
 const ESTADO_CONFIG: Record<
   VoluntariadoEstado,
@@ -46,7 +46,7 @@ function formatDate(raw: string): string {
   }
 }
 
-// ── Habilidades multi-select picker ─────────────────────────────────────────
+// ── Selector múltiple de habilidades ─────────────────────────────────────────
 
 function HabilidadesPicker({
   habilidades,
@@ -60,7 +60,7 @@ function HabilidadesPicker({
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Close on outside click
+  // Cerrar al hacer clic fuera
   useEffect(() => {
     function handleClick(e: MouseEvent) {
       if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
@@ -127,7 +127,7 @@ function HabilidadesPicker({
         </div>
       )}
 
-      {/* Selected tags */}
+      {/* Etiquetas seleccionadas */}
       {value.length > 0 && (
         <div className="mt-2 flex flex-wrap gap-1.5">
           {value.map((h) => (
@@ -152,7 +152,7 @@ function HabilidadesPicker({
   );
 }
 
-// ── Empty state ──────────────────────────────────────────────────────────────
+// ── Estado vacío ─────────────────────────────────────────────────────────────
 
 function EmptyState({ onOpen }: { onOpen: () => void }) {
   return (
@@ -178,7 +178,7 @@ function EmptyState({ onOpen }: { onOpen: () => void }) {
   );
 }
 
-// ── Card options menu ────────────────────────────────────────────────────────
+// ── Menú de opciones de la tarjeta ───────────────────────────────────────────
 
 function CardMenu({ onEdit, onDelete }: { onEdit: () => void; onDelete: () => void }) {
   const [open, setOpen] = useState(false);
@@ -186,8 +186,8 @@ function CardMenu({ onEdit, onDelete }: { onEdit: () => void; onDelete: () => vo
   const triggerRef = useRef<HTMLButtonElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Position dropdown relative to the trigger button using fixed coords,
-  // so it escapes any transform stacking context on the card.
+  // Posiciona el menú desplegable respecto al botón que lo activa usando coordenadas fijas,
+  // para que escape de cualquier contexto de apilamiento (transform) de la tarjeta.
   function openMenu() {
     if (!triggerRef.current) return;
     const rect = triggerRef.current.getBoundingClientRect();
@@ -276,7 +276,7 @@ function CardMenu({ onEdit, onDelete }: { onEdit: () => void; onDelete: () => vo
   );
 }
 
-// ── Delete confirmation modal ────────────────────────────────────────────────
+// ── Modal de confirmación de eliminación ─────────────────────────────────────
 
 function DeleteModal({
   nombre,
@@ -299,7 +299,7 @@ function DeleteModal({
         aria-hidden="true"
       />
       <div className="glass-panel relative w-full max-w-sm rounded-[1.75rem] p-6 shadow-[0_28px_80px_rgba(18,53,47,0.2)]">
-        {/* Icon */}
+        {/* Ícono */}
         <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[rgba(236,106,95,0.1)]">
           <svg width="22" height="22" viewBox="0 0 14 14" fill="none" stroke="var(--color-danger)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M1.5 3.5H12.5M5 3.5V2H9V3.5M3 3.5L3.5 12H10.5L11 3.5" />
@@ -344,7 +344,7 @@ function DeleteModal({
   );
 }
 
-// ── Voluntariado card ────────────────────────────────────────────────────────
+// ── Tarjeta de voluntariado ──────────────────────────────────────────────────
 
 function VoluntariadoCard({
   v,
@@ -469,7 +469,7 @@ function VoluntariadoCard({
   );
 }
 
-// ── Edit modal ──────────────────────────────────────────────────────────────
+// ── Modal de edición ─────────────────────────────────────────────────────────
 
 function EditModal({
   isOpen,
@@ -507,13 +507,13 @@ function EditModal({
     {},
   );
 
-  // Sync all controlled fields whenever the modal opens for a (potentially different) card
+  // Sincroniza todos los campos controlados cada vez que el modal se abre para una tarjeta (potencialmente distinta)
   useEffect(() => {
     if (isOpen) {
       setNombre(v.nombre);
       setDescripcion(v.descripcion ?? "");
 
-      // Prefer the numeric ID field; fall back to matching by name in the catalogue
+      // Prioriza el campo de ID numérico; si no existe, recurre a buscar coincidencia por nombre en el catálogo
       if (v.modalidad_id != null) {
         setModalidadId(String(v.modalidad_id));
       } else {
@@ -544,7 +544,7 @@ function EditModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center p-0 sm:items-center sm:p-4">
-      {/* Backdrop */}
+      {/* Fondo */}
       <div
         className="absolute inset-0 bg-black/40 backdrop-blur-sm"
         onClick={onClose}
@@ -553,7 +553,7 @@ function EditModal({
 
       {/* Panel */}
       <div className="glass-panel relative w-full max-w-lg overflow-y-auto rounded-t-[1.75rem] p-6 shadow-[0_-20px_80px_rgba(18,53,47,0.2)] sm:max-h-[90vh] sm:rounded-[1.75rem] sm:shadow-[0_28px_100px_rgba(18,53,47,0.2)]">
-        {/* Header */}
+        {/* Encabezado */}
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="section-kicker">Modificar convocatoria</p>
@@ -570,14 +570,14 @@ function EditModal({
           </button>
         </div>
 
-        {/* Error message */}
+        {/* Mensaje de error */}
         {state.message && (
           <div className="mt-4 rounded-[1.1rem] border border-[var(--color-danger)]/25 bg-[rgba(236,106,95,0.06)] px-4 py-3 text-sm text-[var(--color-danger)]">
             {state.message}
           </div>
         )}
 
-        {/* Form */}
+        {/* Formulario */}
         <form action={action} className="mt-5 grid gap-4">
           {/* Nombre */}
           <div className="grid gap-1.5">
@@ -685,7 +685,7 @@ function EditModal({
             />
           </div>
 
-          {/* Actions */}
+          {/* Acciones */}
           <div className="mt-2 flex gap-3">
             <button
               type="button"
@@ -706,7 +706,7 @@ function EditModal({
   );
 }
 
-// ── Create modal ─────────────────────────────────────────────────────────────
+// ── Modal de creación ────────────────────────────────────────────────────────
 
 function CreateModal({
   isOpen,
@@ -744,7 +744,7 @@ function CreateModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center p-0 sm:items-center sm:p-4">
-      {/* Backdrop */}
+      {/* Fondo */}
       <div
         className="absolute inset-0 bg-black/40 backdrop-blur-sm"
         onClick={onClose}
@@ -753,7 +753,7 @@ function CreateModal({
 
       {/* Panel */}
       <div className="glass-panel relative w-full max-w-lg overflow-y-auto rounded-t-[1.75rem] p-6 shadow-[0_-20px_80px_rgba(18,53,47,0.2)] sm:max-h-[90vh] sm:rounded-[1.75rem] sm:shadow-[0_28px_100px_rgba(18,53,47,0.2)]">
-        {/* Header */}
+        {/* Encabezado */}
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="section-kicker">Nueva convocatoria</p>
@@ -770,14 +770,14 @@ function CreateModal({
           </button>
         </div>
 
-        {/* Error message */}
+        {/* Mensaje de error */}
         {state.message && (
           <div className="mt-4 rounded-[1.1rem] border border-[var(--color-danger)]/25 bg-[rgba(236,106,95,0.06)] px-4 py-3 text-sm text-[var(--color-danger)]">
             {state.message}
           </div>
         )}
 
-        {/* Form */}
+        {/* Formulario */}
         <form key={formKey} action={action} className="mt-5 grid gap-4">
           {/* Nombre */}
           <div className="grid gap-1.5">
@@ -866,7 +866,7 @@ function CreateModal({
             <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-muted)]">
               Habilidades requeridas
             </span>
-            {/* Hidden input carries the JSON-stringified selection */}
+            {/* El input oculto transporta la selección serializada en JSON */}
             <input
               type="hidden"
               name="habilidades"
@@ -880,7 +880,7 @@ function CreateModal({
             />
           </div>
 
-          {/* Actions */}
+          {/* Acciones */}
           <div className="mt-2 flex gap-3">
             <button
               type="button"
@@ -901,7 +901,7 @@ function CreateModal({
   );
 }
 
-// ── Main view ────────────────────────────────────────────────────────────────
+// ── Vista principal ──────────────────────────────────────────────────────────
 
 interface VoluntariadosViewProps {
   fundacionId: string;
@@ -937,7 +937,7 @@ export default function VoluntariadosView({
           <section className="shell-panel soft-grid relative overflow-hidden rounded-[2rem] p-3 sm:p-4 lg:p-5">
             <div className="flex min-h-[calc(100vh-4rem)] flex-col gap-4">
 
-              {/* Page header */}
+              {/* Encabezado de la página */}
               <header className="glass-panel rounded-[1.75rem] px-5 py-5">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                   <div>
@@ -958,7 +958,7 @@ export default function VoluntariadosView({
                   </button>
                 </div>
 
-                {/* Summary stats (only when there's data) */}
+                {/* Estadísticas resumen (solo cuando hay datos) */}
                 {counts.total > 0 && (
                   <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
                     {[
@@ -976,7 +976,7 @@ export default function VoluntariadosView({
                 )}
               </header>
 
-              {/* List or empty state */}
+              {/* Lista o estado vacío */}
               {voluntariados.length === 0 ? (
                 <EmptyState onOpen={openModal} />
               ) : (

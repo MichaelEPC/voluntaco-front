@@ -6,16 +6,16 @@ export interface Voluntariado {
   nombre: string;
   descripcion?: string;
   modalidad_id?: number;
-  /** Name of the modalidad, may be populated by the API via join. */
+  /** Nombre de la modalidad, puede venir poblado por la API via join. */
   modalidad?: string;
   usuario_rol_id?: number;
-  /** Name of the volunteer role, may be populated by the API via join. */
+  /** Nombre del rol de voluntario, puede venir poblado por la API via join. */
   rol_voluntario?: string;
   estado: VoluntariadoEstado;
   fecha_creacion: string;
-  /** Number of applicants, if returned by the API. */
+  /** Numero de postulantes, si la API lo retorna. */
   postulaciones_count?: number;
-  /** Skills linked to this voluntariado, may be returned by the API. */
+  /** Habilidades vinculadas a este voluntariado, si la API lo retorna. */
   habilidades?: Habilidad[];
 }
 

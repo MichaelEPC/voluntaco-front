@@ -88,7 +88,7 @@ export default function VolunteerHome({ name }: { name: string }) {
         <section className="shell-panel soft-grid relative overflow-hidden rounded-[2rem] p-3 sm:p-4 lg:p-5">
           <div className="flex min-h-[calc(100vh-4rem)] flex-col gap-4">
 
-            {/* Search header */}
+            {/* Encabezado de búsqueda */}
             <header className="glass-panel rounded-[1.75rem] px-5 py-5">
               <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
                 <div>
@@ -99,7 +99,7 @@ export default function VolunteerHome({ name }: { name: string }) {
                 </div>
 
                 <div className="flex flex-col gap-3">
-                  {/* Category pills */}
+                  {/* Píldoras de categorías */}
                   <div className="flex gap-2">
                     {searchCategories.map((cat, i) => (
                       <span
@@ -115,7 +115,7 @@ export default function VolunteerHome({ name }: { name: string }) {
                     ))}
                   </div>
 
-                  {/* Search bar */}
+                  {/* Barra de búsqueda */}
                   <form className="flex gap-3" action="#">
                     <div className="flex min-w-0 flex-1 items-center gap-3 rounded-full border border-[var(--color-line)] bg-white px-4 py-3 text-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] sm:min-w-[400px]">
                       <span aria-hidden="true" className="text-[var(--color-muted)]">⌕</span>
@@ -137,10 +137,10 @@ export default function VolunteerHome({ name }: { name: string }) {
               </div>
             </header>
 
-            {/* Main grid: recommended + application status */}
+            {/* Cuadrícula principal: recomendados + estado de postulaciones */}
             <div className="grid flex-1 gap-4 xl:grid-cols-[minmax(0,1fr)_360px]">
 
-              {/* Center: Recommended voluntariados */}
+              {/* Centro: voluntariados recomendados */}
               <section className="flex flex-col gap-4">
                 <div className="glass-panel rounded-[1.75rem] p-5">
                   <p className="section-kicker">Recomendados para ti</p>
@@ -209,14 +209,14 @@ export default function VolunteerHome({ name }: { name: string }) {
                 ))}
               </section>
 
-              {/* Right: Application status timeline */}
+              {/* Derecha: línea de tiempo del estado de postulaciones */}
               <aside className="glass-panel flex flex-col rounded-[1.75rem] p-5">
                 <p className="section-kicker">Mis postulaciones</p>
                 <h2 className="mt-2 font-display text-3xl leading-none text-[var(--color-ink)]">
                   Estado actual
                 </h2>
 
-                {/* Summary counts */}
+                {/* Conteos resumen */}
                 <div className="mt-4 grid grid-cols-3 gap-2">
                   {applicationSummary.map((s) => (
                     <div key={s.label} className="metric-card rounded-[1.2rem] p-3 text-center">
@@ -226,7 +226,7 @@ export default function VolunteerHome({ name }: { name: string }) {
                   ))}
                 </div>
 
-                {/* Timeline */}
+                {/* Línea de tiempo */}
                 <div className="relative mt-5 flex-1">
                   <div className="absolute bottom-0 left-[1.05rem] top-0 w-px bg-[var(--color-line)]" />
 

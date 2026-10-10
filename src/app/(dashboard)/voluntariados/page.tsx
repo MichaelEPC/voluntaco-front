@@ -7,7 +7,7 @@ import VoluntariadosView from "@/components/voluntariados/VoluntariadosView";
 export default async function VoluntariadosPage() {
   const session = await getSession();
 
-  // Only foundations can manage voluntariados
+  // Solo las fundaciones pueden gestionar voluntariados
   if (!session || Number(session.role) !== ROLES.FUNDACION) {
     redirect("/");
   }

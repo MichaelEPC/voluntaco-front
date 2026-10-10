@@ -89,7 +89,7 @@ export default function FoundationHome({ name }: { name: string }) {
         <section className="shell-panel soft-grid relative overflow-hidden rounded-[2rem] p-3 sm:p-4 lg:p-5">
           <div className="grid min-h-[calc(100vh-4rem)] gap-4 lg:grid-cols-[280px_minmax(0,1fr)]">
 
-            {/* Left: Notifications sidebar */}
+            {/* Izquierda: barra lateral de notificaciones */}
             <aside className="glass-panel hidden rounded-[1.75rem] p-5 lg:flex lg:flex-col">
               <p className="section-kicker">Notificaciones</p>
               <h2 className="mt-3 font-display text-3xl leading-none text-[var(--color-ink)]">
@@ -118,10 +118,10 @@ export default function FoundationHome({ name }: { name: string }) {
               </button>
             </aside>
 
-            {/* Right: Main content */}
+            {/* Derecha: contenido principal */}
             <div className="flex flex-col gap-4">
 
-              {/* Search header */}
+              {/* Encabezado de búsqueda */}
               <header className="glass-panel rounded-[1.75rem] px-5 py-5">
                 <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
                   <div>
@@ -150,7 +150,7 @@ export default function FoundationHome({ name }: { name: string }) {
                 </div>
               </header>
 
-              {/* Stats row */}
+              {/* Fila de estadísticas */}
               <div className="grid gap-4 sm:grid-cols-3">
                 {stats.map((s) => (
                   <div key={s.label} className="metric-card rounded-[1.75rem] p-5">
@@ -163,10 +163,10 @@ export default function FoundationHome({ name }: { name: string }) {
                 ))}
               </div>
 
-              {/* Active voluntariados + Recent applicants */}
+              {/* Voluntariados activos + postulantes recientes */}
               <div className="grid flex-1 gap-4 xl:grid-cols-[minmax(0,1fr)_300px]">
 
-                {/* Active voluntariados */}
+                {/* Voluntariados activos */}
                 <section className="glass-panel rounded-[1.75rem] p-5">
                   <div className="flex items-center justify-between">
                     <div>
@@ -207,7 +207,7 @@ export default function FoundationHome({ name }: { name: string }) {
                   </div>
                 </section>
 
-                {/* Recent applicants */}
+                {/* Postulantes recientes */}
                 <aside className="metric-card flex flex-col rounded-[1.75rem] p-5">
                   <p className="section-kicker">Postulantes recientes</p>
                   <h2 className="mt-2 font-display text-2xl leading-none text-[var(--color-ink)]">

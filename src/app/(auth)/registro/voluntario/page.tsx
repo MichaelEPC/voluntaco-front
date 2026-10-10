@@ -87,23 +87,23 @@ export default function RegistroVoluntarioPage() {
     };
   }
 
-  // ── Success screen ────────────────────────────────────────────────────────
+  // ── Pantalla de éxito ─────────────────────────────────────────────────────
   if (state?.success) {
     return (
       <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[var(--color-surface)] px-4 py-10">
-        {/* Decorative blobs */}
+        {/* Formas decorativas */}
         <div className="pointer-events-none absolute -top-32 -right-32 h-[480px] w-[480px] rounded-full bg-[var(--color-accent)]/10 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-[#12352F]/8 blur-3xl" />
 
         <div className="glass-panel relative z-10 w-full max-w-lg rounded-[2rem] p-10 shadow-[0_32px_80px_rgba(31,82,66,0.13)]">
 
-          {/* Logo */}
+          {/* Logotipo */}
           <div className="flex items-center gap-2.5">
             <LogoMark compact />
             <span className="font-display text-xl leading-none text-[var(--color-ink)]">Voluntaco</span>
           </div>
 
-          {/* Icon badge */}
+          {/* Insignia de ícono */}
           <div className="mt-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--color-accent)]/12">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
               <circle cx="14" cy="14" r="14" fill="var(--color-accent)" fillOpacity="0.15" />
@@ -122,10 +122,10 @@ export default function RegistroVoluntarioPage() {
             </p>
           )}
 
-          {/* Divider */}
+          {/* Separador */}
           <div className="my-6 h-px bg-[var(--color-line)]" />
 
-          {/* Next steps */}
+          {/* Siguientes pasos */}
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">Que puedes hacer ahora</p>
           <ul className="mt-4 grid gap-3">
             {[
@@ -142,7 +142,7 @@ export default function RegistroVoluntarioPage() {
             ))}
           </ul>
 
-          {/* CTAs */}
+          {/* Llamadas a la acción */}
           <div className="mt-8 grid gap-3">
             <a
               href="/login"
@@ -184,7 +184,7 @@ export default function RegistroVoluntarioPage() {
         <section className="glass-panel mx-auto flex w-full max-w-[540px] flex-col justify-center rounded-[1.85rem] px-5 py-7 shadow-[0_28px_80px_rgba(31,82,66,0.14)] sm:px-7 sm:py-9 lg:px-8">
           <div className="mx-auto flex w-full max-w-[420px] flex-col">
 
-            {/* Logo mobile */}
+            {/* Logotipo móvil */}
             <div className="flex items-center gap-3 lg:hidden">
               <LogoMark compact />
               <p className="font-display text-2xl leading-none text-[var(--color-ink)]">Voluntaco</p>
@@ -260,7 +260,7 @@ export default function RegistroVoluntarioPage() {
                 )}
               </div>
 
-              {/* Email */}
+              {/* Correo electrónico */}
               <div className="grid gap-1">
                 <Field icon="◔" invalid={Boolean(state?.errors?.email)}>
                   <input

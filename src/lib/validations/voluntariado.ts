@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-/** Coerces a form string value to a required positive integer. */
+/** Convierte un valor string de formulario a un entero positivo requerido. */
 const requiredId = z.preprocess(
   (v) => (v === "" || v == null ? undefined : Number(v)),
   z.number({ message: "Selecciona una opcion valida" }).int().positive("Selecciona una opcion valida"),
@@ -22,8 +22,8 @@ export const crearVoluntariadoSchema = z.object({
   usuario_rol_id: requiredId,
 
   /**
-   * JSON-stringified array of selected habilidad objects: [{id, nombre}, ...]
-   * Optional — empty array sent when nothing is selected.
+   * Arreglo serializado en JSON de los objetos habilidad seleccionados: [{id, nombre}, ...]
+   * Opcional — se envia un arreglo vacio cuando no se selecciono nada.
    */
   habilidades: z.preprocess(
     (v) => (v === "" || v == null ? undefined : v),
@@ -33,7 +33,7 @@ export const crearVoluntariadoSchema = z.object({
 
 export type CrearVoluntariadoInput = z.infer<typeof crearVoluntariadoSchema>;
 
-/** Schema for PATCH — all fields optional, but validated if provided. */
+/** Esquema para PATCH — todos los campos opcionales, pero validados si se proveen. */
 const optionalId = z.preprocess(
   (v) => (v === "" || v == null ? undefined : Number(v)),
   z.number().int().positive("Selecciona una opcion valida").optional(),

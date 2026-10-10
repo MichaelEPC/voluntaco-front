@@ -3,29 +3,29 @@ import { cookies } from "next/headers";
 
 export const SESSION_COOKIE = "session" as const;
 
-/** Shape of the JWT payload sent by the backend. */
+/** Forma del payload del JWT enviado por el backend. */
 export interface SessionPayload {
   name: string;
   role: string | number;
   /**
-   * JWT subject — contains the usuario_id (user's primary key).
-   * Used to identify the user when making authenticated API calls.
+   * Subject (sub) del JWT — contiene el usuario_id (clave primaria del usuario).
+   * Se usa para identificar al usuario al hacer llamadas autenticadas a la API.
    */
   sub?: string;
-  /** Standard JWT expiry (seconds since epoch). */
+  /** Expiracion estandar del JWT (segundos desde epoch). */
   exp?: number;
 }
 
 /**
- * Reads and decodes the session cookie **without** verifying the signature
- * (signature verification is the backend's responsibility on every API call).
- * Returns `null` when the cookie is absent or the token is expired.
+ * Lee y decodifica la cookie de sesion **sin** verificar la firma
+ * (la verificacion de la firma es responsabilidad del backend en cada llamada a la API).
+ * Retorna `null` cuando la cookie no existe o el token expiro.
  */
 export function decodeSession(token: string): SessionPayload | null {
   try {
     const payload = decodeJwt(token) as SessionPayload & { exp?: number };
 
-    // Treat an expired token the same as no session.
+    // Trata un token expirado igual que si no hubiera sesion.
     if (payload.exp && payload.exp * 1000 < Date.now()) {
       return null;
     }
@@ -37,8 +37,8 @@ export function decodeSession(token: string): SessionPayload | null {
 }
 
 /**
- * Returns the raw access token from the session cookie.
- * Use this when you need the JWT string for Authorization headers.
+ * Retorna el token de acceso crudo desde la cookie de sesion.
+ * Usa esto cuando necesites el string del JWT para encabezados de Authorization.
  */
 export async function getAccessToken(): Promise<string | null> {
   const jar = await cookies();
@@ -46,8 +46,8 @@ export async function getAccessToken(): Promise<string | null> {
 }
 
 /**
- * Returns the current session from the request cookie store (Server Components
- * and Server Actions only). Returns `null` when unauthenticated.
+ * Retorna la sesion actual desde el almacen de cookies de la peticion (solo
+ * Server Components y Server Actions). Retorna `null` cuando no hay sesion.
  */
 export async function getSession(): Promise<SessionPayload | null> {
   const jar = await cookies();
@@ -56,11 +56,11 @@ export async function getSession(): Promise<SessionPayload | null> {
   return decodeSession(token);
 }
 
-/** Cookie options used when setting the session. */
+/** Opciones de cookie usadas al establecer la sesion. */
 export const SESSION_COOKIE_OPTIONS = {
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
   sameSite: "lax" as const,
   path: "/",
-  maxAge: 60 * 60, // 1 hour — mirrors the backend token lifetime
+  maxAge: 60 * 60, // 1 hora — refleja la vida util del token del backend
 } as const;

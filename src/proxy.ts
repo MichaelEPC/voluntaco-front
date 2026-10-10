@@ -3,11 +3,11 @@ import type { NextRequest } from "next/server";
 import { decodeJwt } from "jose";
 import { SESSION_COOKIE } from "@/lib/auth/session";
 
-// ── Route classification ──────────────────────────────────────────────────────
+// ── Clasificacion de rutas ───────────────────────────────────────────────────
 
 /**
- * Paths that are always accessible — no session required.
- * Everything else is considered protected.
+ * Rutas siempre accesibles — no requieren sesion.
+ * Todo lo demas se considera protegido.
  */
 const PUBLIC_PATHS = [
   "/login",
@@ -21,7 +21,7 @@ function isPublicPath(pathname: string): boolean {
   );
 }
 
-// ── Session helpers (Edge-compatible) ────────────────────────────────────────
+// ── Funciones auxiliares de sesion (compatibles con Edge) ────────────────────
 
 function isValidToken(token: string): boolean {
   try {
@@ -29,18 +29,18 @@ function isValidToken(token: string): boolean {
     if (typeof payload.exp === "number") {
       return payload.exp * 1000 > Date.now();
     }
-    // No exp claim — accept the token (backend controls validity)
+    // Sin claim exp — se acepta el token (el backend controla su validez)
     return true;
   } catch {
     return false;
   }
 }
 
-// ── Rate limiting ─────────────────────────────────────────────────────────────
+// ── Limitacion de tasa (rate limiting) ───────────────────────────────────────
 //
-// NOTE: This in-memory store works correctly only in single-instance deployments
-// (local dev, single-server). For distributed/edge deployments, replace with
-// Upstash Redis + @upstash/ratelimit.
+// NOTA: Este almacen en memoria funciona correctamente solo en despliegues de una
+// sola instancia (desarrollo local, servidor unico). Para despliegues distribuidos
+// o en edge, reemplazar con Upstash Redis + @upstash/ratelimit.
 
 interface RateLimitEntry {
   count: number;
@@ -49,10 +49,10 @@ interface RateLimitEntry {
 
 const store = new Map<string, RateLimitEntry>();
 
-const LIMIT = 10;              // max requests per window
-const WINDOW_MS = 60_000;     // 1 minute
+const LIMIT = 10;              // maximo de peticiones por ventana
+const WINDOW_MS = 60_000;     // 1 minuto
 
-/** Returns `true` if the IP has exceeded the rate limit. */
+/** Retorna `true` si la IP supero el limite de tasa. */
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
   const entry = store.get(ip);
@@ -82,25 +82,25 @@ export function proxy(request: NextRequest): NextResponse {
   const token = request.cookies.get(SESSION_COOKIE)?.value;
   const authenticated = token ? isValidToken(token) : false;
 
-  // ── Route protection ──────────────────────────────────────────────────────
+  // ── Proteccion de rutas ──────────────────────────────────────────────────────
   if (!isPublicPath(pathname)) {
-    // Protected route — redirect unauthenticated users to login
+    // Ruta protegida — redirige a los usuarios no autenticados al login
     if (!authenticated) {
       const loginUrl = request.nextUrl.clone();
       loginUrl.pathname = "/login";
-      // Preserve the intended destination so we can redirect back after login
+      // Preserva el destino original para redirigir de vuelta tras iniciar sesion
       loginUrl.searchParams.set("next", pathname);
       return NextResponse.redirect(loginUrl);
     }
   } else if (pathname === "/login" && authenticated) {
-    // Already logged in — send away from the login page
+    // Ya tiene sesion iniciada — lo saca de la pagina de login
     const homeUrl = request.nextUrl.clone();
     homeUrl.pathname = "/";
     homeUrl.search = "";
     return NextResponse.redirect(homeUrl);
   }
 
-  // ── Rate limiting (auth Server Actions only) ──────────────────────────────
+  // ── Limitacion de tasa (solo Server Actions de autenticacion) ────────────────
   const isServerAction = request.headers.has("next-action");
   const isAuthPath =
     pathname.startsWith("/registro") || pathname.startsWith("/login");
@@ -125,7 +125,7 @@ export function proxy(request: NextRequest): NextResponse {
 
   const response = NextResponse.next();
 
-  // ── Security headers (applied to every response) ──────────────────────────
+  // ── Encabezados de seguridad (aplicados a cada respuesta) ────────────────────
   response.headers.set("X-Content-Type-Options", "nosniff");
   response.headers.set("X-Frame-Options", "DENY");
   response.headers.set("X-XSS-Protection", "1; mode=block");
@@ -144,7 +144,7 @@ export function proxy(request: NextRequest): NextResponse {
 
 export const config = {
   matcher: [
-    // Apply to all routes except Next.js internals and static assets
+    // Se aplica a todas las rutas excepto los internos de Next.js y los activos estaticos
     "/((?!_next/static|_next/image|favicon\\.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };

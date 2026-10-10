@@ -3,8 +3,8 @@ import { SESSION_COOKIE } from "@/lib/auth/session";
 import type { Voluntariado, Modalidad, VoluntarioRol, Habilidad } from "@/types";
 
 /**
- * Fetches all voluntariados published by a given foundation.
- * Returns an empty array on any error so the page can render gracefully.
+ * Obtiene todos los voluntariados publicados por una fundacion dada.
+ * Retorna un arreglo vacio ante cualquier error para que la pagina se renderice sin fallas.
  */
 export async function getVoluntariadosFundacion(
   fundacionId: string,
@@ -38,8 +38,8 @@ export async function getVoluntariadosFundacion(
 }
 
 /**
- * Fetches the list of skills (habilidades) from /util/habilidades-voluntariados.
- * Returns an empty array on any error so the page can render gracefully.
+ * Obtiene la lista de habilidades desde /util/habilidades-voluntariados.
+ * Retorna un arreglo vacio ante cualquier error para que la pagina se renderice sin fallas.
  */
 export async function getHabilidades(): Promise<Habilidad[]> {
   const apiUrl = process.env.API_URL;
@@ -66,8 +66,8 @@ export async function getHabilidades(): Promise<Habilidad[]> {
 }
 
 /**
- * Fetches the list of modalidades from /util/modalidades-voluntariados.
- * Returns an empty array on any error so the page can render gracefully.
+ * Obtiene la lista de modalidades desde /util/modalidades-voluntariados.
+ * Retorna un arreglo vacio ante cualquier error para que la pagina se renderice sin fallas.
  */
 export async function getModalidades(): Promise<Modalidad[]> {
   const apiUrl = process.env.API_URL;
@@ -94,8 +94,8 @@ export async function getModalidades(): Promise<Modalidad[]> {
 }
 
 /**
- * Fetches the list of volunteer roles from /util/roles-voluntarios.
- * Returns an empty array on any error so the page can render gracefully.
+ * Obtiene la lista de roles de voluntario desde /util/roles-voluntarios.
+ * Retorna un arreglo vacio ante cualquier error para que la pagina se renderice sin fallas.
  */
 export async function getVoluntariosRoles(): Promise<VoluntarioRol[]> {
   const apiUrl = process.env.API_URL;
@@ -108,7 +108,7 @@ export async function getVoluntariosRoles(): Promise<VoluntarioRol[]> {
   try {
     const res = await fetch(`${apiUrl}/util/roles-voluntarios`, {
       headers: { Authorization: `Bearer ${token}` },
-      // Roles are stable reference data — revalidate once per day
+      // Los roles son datos de referencia estables — revalidar una vez al dia
       next: { revalidate: 86_400 },
       signal: AbortSignal.timeout(10_000),
     });

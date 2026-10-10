@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-// ── Schema ────────────────────────────────────────────────────────────────────
+// ── Esquema ───────────────────────────────────────────────────────────────────
 
 export const REGISTRO_LIMITS = {
   documento: { min: 7, max: 10 },
@@ -94,7 +94,7 @@ export const registroVoluntarioSchema = z.object({
 
 export type RegistroVoluntarioInput = z.infer<typeof registroVoluntarioSchema>;
 
-// ── Form state (returned by the Server Action) ────────────────────────────────
+// ── Estado del formulario (retornado por el Server Action) ────────────────────
 
 type FieldName = keyof Omit<RegistroVoluntarioInput, "rol_id">;
 

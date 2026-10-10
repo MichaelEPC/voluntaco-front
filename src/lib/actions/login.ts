@@ -15,7 +15,7 @@ export async function login(
 ): Promise<LoginFormState> {
   const attemptedAt = Date.now();
 
-  // ── 1. Validate inputs ────────────────────────────────────────────────────
+  // ── 1. Validar entradas ───────────────────────────────────────────────────
   const raw = {
     email: getStringValue(formData.get("email")),
     password: getStringValue(formData.get("password")),
@@ -30,7 +30,7 @@ export async function login(
     return { attemptedAt, message: firstError, values: raw };
   }
 
-  // ── 2. Call the backend ───────────────────────────────────────────────────
+  // ── 2. Llamar al backend ──────────────────────────────────────────────────
   const apiUrl = process.env.API_URL;
 
   if (!apiUrl) {
@@ -100,15 +100,15 @@ export async function login(
     };
   }
 
-  // ── 3. Persist session in httpOnly cookie ─────────────────────────────────
+  // ── 3. Persistir la sesion en una cookie httpOnly ─────────────────────────
   const jar = await cookies();
   jar.set(SESSION_COOKIE, accessToken, SESSION_COOKIE_OPTIONS);
 
-  // ── 4. Redirect to the app (outside try/catch — redirect throws) ──────────
+  // ── 4. Redirigir a la app (fuera del try/catch — redirect lanza una excepcion) ──
   redirect("/");
 }
 
-/** Clears the session cookie. Call from a Server Action bound to a logout button. */
+/** Limpia la cookie de sesion. Llamar desde un Server Action asociado a un boton de cerrar sesion. */
 export async function logout(): Promise<void> {
   const jar = await cookies();
   jar.delete(SESSION_COOKIE);

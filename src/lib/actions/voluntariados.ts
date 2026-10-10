@@ -24,7 +24,7 @@ export async function crearVoluntariado(
     };
   }
 
-  // ── 1. Auth ───────────────────────────────────────────────────────────────
+  // ── 1. Autenticacion ──────────────────────────────────────────────────────
   const jar = await cookies();
   const token = jar.get(SESSION_COOKIE)?.value;
 
@@ -32,7 +32,7 @@ export async function crearVoluntariado(
     return { attemptedAt, message: "No autorizado. Inicia sesion nuevamente." };
   }
 
-  // ── 2. Validate ───────────────────────────────────────────────────────────
+  // ── 2. Validar ────────────────────────────────────────────────────────────
   const raw = {
     nombre: formData.get("nombre"),
     descripcion: formData.get("descripcion"),
@@ -49,18 +49,18 @@ export async function crearVoluntariado(
     return { attemptedAt, message: firstError };
   }
 
-  // Parse habilidades JSON string into an array of IDs
+  // Convierte el string JSON de habilidades en un arreglo de IDs
   let habilidades_ids: number[] = [];
   if (parsed.data.habilidades) {
     try {
       const parsed_habilidades = JSON.parse(parsed.data.habilidades) as Array<{ id: number }>;
       habilidades_ids = parsed_habilidades.map((h) => h.id);
     } catch {
-      // Ignore malformed JSON — treat as empty
+      // Ignorar JSON malformado — tratar como vacio
     }
   }
 
-  // ── 3. Call API ───────────────────────────────────────────────────────────
+  // ── 3. Llamar a la API ────────────────────────────────────────────────────
   const apiUrl = process.env.API_URL;
 
   if (!apiUrl) {
@@ -155,7 +155,7 @@ export async function actualizarVoluntariado(
     return { attemptedAt, message: "El servicio no esta disponible." };
   }
 
-  // Build patch body — only include defined fields
+  // Construir el cuerpo del patch — incluir solo los campos definidos
   const body: Record<string, unknown> = {};
   if (parsed.data.nombre !== undefined) body.nombre = parsed.data.nombre;
   if (parsed.data.descripcion !== undefined) body.descripcion = parsed.data.descripcion;
