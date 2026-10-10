@@ -4,14 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { logout } from "@/lib/actions/login";
 import type { SessionPayload } from "@/lib/auth/session";
+import { ROLES } from "@/lib/constants/roles";
 
 type NavItem = {
   label: string;
   href: string;
 };
-
-const VOLUNTARIO_ROLE = 1;
-const FUNDACION_ROLE = 2;
 
 const volunteerItems: NavItem[] = [
   { label: "Inicio", href: "/" },
@@ -54,8 +52,8 @@ export default function RoleNavbar({ session }: { session: SessionPayload | null
   }
 
   const role = normalizeRole(session.role);
-  const items = role === FUNDACION_ROLE ? foundationItems : volunteerItems;
-  const roleLabel = role === FUNDACION_ROLE ? "Fundacion" : "Voluntario";
+  const items = role === ROLES.FUNDACION ? foundationItems : volunteerItems;
+  const roleLabel = role === ROLES.FUNDACION ? "Fundacion" : "Voluntario";
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--color-line)] bg-white/86 backdrop-blur-xl">

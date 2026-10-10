@@ -1,15 +1,14 @@
 import { redirect } from "next/navigation";
 import { getSession } from "@/lib/auth/session";
 import { getVoluntariadosFundacion, getModalidades, getVoluntariosRoles, getHabilidades } from "@/lib/data/voluntariados";
+import { ROLES } from "@/lib/constants/roles";
 import VoluntariadosView from "@/components/voluntariados/VoluntariadosView";
-
-const FUNDACION_ROLE = 2;
 
 export default async function VoluntariadosPage() {
   const session = await getSession();
 
   // Only foundations can manage voluntariados
-  if (!session || Number(session.role) !== FUNDACION_ROLE) {
+  if (!session || Number(session.role) !== ROLES.FUNDACION) {
     redirect("/");
   }
 
