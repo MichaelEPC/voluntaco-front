@@ -15,6 +15,7 @@
   --color-highlight: #f2a75d;
   --color-ocean: #5ab4a7;
   --color-danger: #ec6a5f;
+  --app-navbar-height: calc(7rem + 2px);
 }
 
 @theme inline {
@@ -68,6 +69,16 @@ a {
     linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(238, 249, 241, 0.88)),
     rgba(255, 255, 255, 0.78);
   box-shadow: 0 28px 100px rgba(37, 84, 68, 0.14);
+}
+
+.dashboard-content {
+  min-height: calc(100dvh - var(--app-navbar-height) - 3rem - 2px);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --app-navbar-height: calc(4rem + 1px);
+  }
 }
 
 .section-kicker {

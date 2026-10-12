@@ -6,3 +6,4 @@ export * from "./opportunity";
 export * from "./dashboard";
 export * from "./auth";
 export * from "./voluntariado";
+export * from "./proyecto";

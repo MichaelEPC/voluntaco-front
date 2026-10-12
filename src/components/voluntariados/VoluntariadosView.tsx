@@ -156,14 +156,14 @@ function HabilidadesPicker({
 
 function EmptyState({ onOpen }: { onOpen: () => void }) {
   return (
-    <div className="flex flex-1 flex-col items-center justify-center rounded-[1.75rem] border border-dashed border-[var(--color-line)] bg-white/50 px-6 py-20 text-center">
+    <div className="flex flex-1 flex-col items-center justify-center rounded-[1.75rem] border border-dashed border-[var(--color-line)] bg-white/50 px-5 py-8 text-center">
       <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--color-surface-strong)] text-3xl">
         📋
       </div>
-      <h2 className="mt-5 font-display text-3xl leading-none text-[var(--color-ink)]">
+      <h2 className="mt-4 font-display text-2xl leading-none text-[var(--color-ink)]">
         Aún no hay voluntariados
       </h2>
-      <p className="mt-3 max-w-sm text-sm leading-7 text-[var(--color-muted)]">
+      <p className="mt-2 max-w-sm text-sm leading-6 text-[var(--color-muted)]">
         No has publicado ningún voluntariado todavía. Crea tu primera
         convocatoria y empieza a recibir postulaciones.
       </p>
@@ -552,7 +552,7 @@ function EditModal({
       />
 
       {/* Panel */}
-      <div className="glass-panel relative w-full max-w-lg overflow-y-auto rounded-t-[1.75rem] p-6 shadow-[0_-20px_80px_rgba(18,53,47,0.2)] sm:max-h-[90vh] sm:rounded-[1.75rem] sm:shadow-[0_28px_100px_rgba(18,53,47,0.2)]">
+      <div className="glass-panel relative max-h-[90dvh] w-full max-w-lg overflow-y-auto rounded-t-[1.75rem] p-5 shadow-[0_-20px_80px_rgba(18,53,47,0.2)] sm:rounded-[1.75rem] sm:shadow-[0_28px_100px_rgba(18,53,47,0.2)]">
         {/* Encabezado */}
         <div className="flex items-start justify-between gap-4">
           <div>
@@ -752,7 +752,7 @@ function CreateModal({
       />
 
       {/* Panel */}
-      <div className="glass-panel relative w-full max-w-lg overflow-y-auto rounded-t-[1.75rem] p-6 shadow-[0_-20px_80px_rgba(18,53,47,0.2)] sm:max-h-[90vh] sm:rounded-[1.75rem] sm:shadow-[0_28px_100px_rgba(18,53,47,0.2)]">
+      <div className="glass-panel relative max-h-[90dvh] w-full max-w-lg overflow-y-auto rounded-t-[1.75rem] p-5 shadow-[0_-20px_80px_rgba(18,53,47,0.2)] sm:rounded-[1.75rem] sm:shadow-[0_28px_100px_rgba(18,53,47,0.2)]">
         {/* Encabezado */}
         <div className="flex items-start justify-between gap-4">
           <div>
@@ -932,17 +932,17 @@ export default function VoluntariadosView({
 
   return (
     <>
-      <main className="relative overflow-hidden px-4 py-4 sm:px-6 lg:px-8 lg:py-8">
+      <main className="relative overflow-hidden px-4 py-3 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-5xl">
-          <section className="shell-panel soft-grid relative overflow-hidden rounded-[2rem] p-3 sm:p-4 lg:p-5">
-            <div className="flex min-h-[calc(100vh-4rem)] flex-col gap-4">
+          <section className="shell-panel soft-grid relative overflow-hidden rounded-[2rem] p-3">
+            <div className="dashboard-content flex flex-col gap-3">
 
               {/* Encabezado de la página */}
-              <header className="glass-panel rounded-[1.75rem] px-5 py-5">
+              <header className="glass-panel rounded-[1.75rem] p-4">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                   <div>
                     <p className="section-kicker">Gestion de convocatorias</p>
-                    <h1 className="mt-2 font-display text-4xl leading-none tracking-[-0.04em] text-[var(--color-ink)]">
+                    <h1 className="mt-2 font-display text-3xl leading-none tracking-[-0.04em] text-[var(--color-ink)]">
                       Mis voluntariados
                     </h1>
                     <p className="mt-2 text-sm text-[var(--color-muted)]">

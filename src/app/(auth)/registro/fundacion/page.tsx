@@ -77,12 +77,12 @@ export default function RegistroFundacionPage() {
 
   if (state?.success) {
     return (
-      <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[var(--color-surface)] px-4 py-10">
+      <main className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-[var(--color-surface)] px-4 py-4">
         {/* Formas decorativas */}
         <div className="pointer-events-none absolute -top-32 -right-32 h-[480px] w-[480px] rounded-full bg-[var(--color-accent)]/10 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-[#12352F]/8 blur-3xl" />
 
-        <div className="glass-panel relative z-10 w-full max-w-lg rounded-[2rem] p-10 shadow-[0_32px_80px_rgba(31,82,66,0.13)]">
+        <div className="glass-panel relative z-10 w-full max-w-md rounded-[2rem] p-6 shadow-[0_32px_80px_rgba(31,82,66,0.13)]">
 
           {/* Logotipo */}
           <div className="flex items-center gap-2.5">
@@ -150,10 +150,10 @@ export default function RegistroFundacionPage() {
   }
 
   return (
-    <main className="relative min-h-screen overflow-hidden px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+    <main className="relative min-h-dvh overflow-hidden px-4 py-4 sm:px-6 lg:px-8">
       <FormToast key={toast?.id ?? "registro-fundacion-toast"} toast={toast} />
 
-      <div className="mx-auto grid min-h-[calc(100vh-3rem)] w-full max-w-6xl gap-4 lg:grid-cols-[1fr_560px]">
+      <div className="mx-auto grid min-h-[calc(100dvh-2rem)] w-full max-w-6xl gap-4 lg:grid-cols-[minmax(0,1fr)_480px]">
 
         {/* Panel izquierdo de marca */}
         <section className="relative hidden overflow-hidden rounded-[2rem] bg-[#12352F] p-8 lg:flex lg:items-center lg:justify-center">
@@ -162,13 +162,13 @@ export default function RegistroFundacionPage() {
 
           <a href="/login" className="relative z-10 flex flex-col items-center text-center">
             <LogoMark />
-            <p className="mt-6 font-display text-5xl leading-none tracking-[-0.05em] text-white">Voluntaco</p>
+            <p className="mt-4 font-display text-4xl leading-none tracking-[-0.05em] text-white">Voluntaco</p>
             <p className="mt-3 text-sm uppercase tracking-[0.3em] text-white/60">comunidad en accion</p>
           </a>
         </section>
 
         {/* Panel derecho — formulario */}
-        <section className="glass-panel mx-auto flex w-full max-w-[540px] flex-col justify-center rounded-[1.85rem] px-5 py-7 shadow-[0_28px_80px_rgba(31,82,66,0.14)] sm:px-7 sm:py-9 lg:px-8">
+        <section className="glass-panel mx-auto flex w-full max-w-[480px] flex-col justify-center rounded-[1.85rem] px-5 py-5 shadow-[0_28px_80px_rgba(31,82,66,0.14)] sm:px-6">
           <div className="mx-auto flex w-full max-w-[420px] flex-col">
 
             {/* Logotipo móvil */}
@@ -177,9 +177,9 @@ export default function RegistroFundacionPage() {
               <p className="font-display text-2xl leading-none text-[var(--color-ink)]">Voluntaco</p>
             </div>
 
-            <div className="mt-6 lg:mt-0">
+            <div className="mt-4 lg:mt-0">
               <p className="section-kicker font-bold">Registro</p>
-              <h2 className="mt-2 font-display text-[2.2rem] leading-[0.95] tracking-[-0.05em] text-[var(--color-ink)]">
+              <h2 className="mt-2 font-display text-3xl leading-none tracking-[-0.05em] text-[var(--color-ink)]">
                 Crea tu cuenta de fundacion
               </h2>
               <p className="mt-2 text-sm leading-6 text-[var(--color-muted)]">
@@ -190,7 +190,7 @@ export default function RegistroFundacionPage() {
               </p>
             </div>
 
-            <form action={formAction} className="mt-6 grid gap-3" noValidate>
+            <form action={formAction} className="mt-4 grid gap-2.5" noValidate>
 
               {/* Nombre legal */}
               <div className="grid gap-1">
@@ -278,7 +278,7 @@ export default function RegistroFundacionPage() {
               {/* Contraseña */}
               <div className="grid gap-1">
                 <label
-                  className={`flex items-center gap-3 rounded-full border bg-white px-4 py-3.5 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] transition ${
+                  className={`flex items-center gap-3 rounded-full border bg-white px-4 py-2.5 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] transition ${
                     state?.errors?.password
                       ? "border-[var(--color-danger)]/45 ring-4 ring-[var(--color-danger)]/10"
                       : "border-[var(--color-line)]"
@@ -297,7 +297,7 @@ export default function RegistroFundacionPage() {
                     disabled={isPending}
                     aria-invalid={Boolean(state?.errors?.password)}
                     aria-describedby={state?.errors?.password ? "err-pass" : undefined}
-                    className="w-full bg-transparent text-base text-[var(--color-ink)] outline-none placeholder:text-[#8a8f8a] disabled:opacity-50"
+                    className="min-w-0 w-full bg-transparent text-base text-[var(--color-ink)] outline-none placeholder:text-[#8a8f8a] disabled:opacity-50"
                   />
                   <button
                     type="button"
@@ -319,11 +319,11 @@ export default function RegistroFundacionPage() {
               <SubmitButton
                 label="Crear cuenta"
                 pendingLabel="Creando cuenta..."
-                className="mt-1 cursor-pointer rounded-full bg-[var(--color-accent)] px-5 py-3.5 text-base font-semibold text-[var(--color-accent-foreground)] shadow-[0_18px_36px_rgba(32,162,107,0.22)] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-70"
+                className="mt-1 cursor-pointer rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-base font-semibold text-[var(--color-accent-foreground)] shadow-[0_18px_36px_rgba(32,162,107,0.22)] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-70"
               />
             </form>
 
-            <p className="mt-6 text-center text-xs leading-6 text-[var(--color-muted)]">
+            <p className="mt-4 text-center text-xs leading-5 text-[var(--color-muted)]">
               Al registrarte aceptas los{" "}
               <a href="#" className="font-medium text-[var(--color-ink)] hover:underline">
                 Terminos de uso

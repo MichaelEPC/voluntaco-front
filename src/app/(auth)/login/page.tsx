@@ -38,16 +38,16 @@ export default function LoginPage() {
       : null;
 
   return (
-    <main className="relative min-h-screen overflow-hidden px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+    <main className="relative min-h-dvh overflow-hidden px-4 py-4 sm:px-6 lg:px-8">
       <FormToast key={toast?.id ?? "login-toast"} toast={toast} />
-      <div className="mx-auto grid min-h-[calc(100vh-3rem)] w-full max-w-6xl gap-4 lg:grid-cols-[1fr_520px]">
-        <section className="shell-panel hero-wash relative hidden overflow-hidden rounded-[2rem] p-8 lg:flex lg:flex-col lg:justify-between">
+      <div className="mx-auto grid min-h-[calc(100dvh-2rem)] w-full max-w-6xl gap-4 lg:grid-cols-[minmax(0,1fr)_420px]">
+        <section className="shell-panel hero-wash relative hidden overflow-hidden rounded-[2rem] p-6 lg:flex lg:flex-col lg:justify-between">
           <div className="absolute inset-y-10 right-10 w-40 rounded-full bg-[var(--color-highlight)]/20 blur-3xl" />
           <div className="absolute bottom-8 left-8 h-32 w-32 rounded-full bg-[var(--color-accent)]/18 blur-3xl" />
 
           <div className="relative z-10 max-w-xl">
-            <div className="inline-flex items-center gap-4 rounded-full border border-white/70 bg-white/72 px-4 py-3 backdrop-blur">
-              <LogoMark />
+            <div className="inline-flex items-center gap-3 rounded-full border border-white/70 bg-white/72 px-4 py-2 backdrop-blur">
+              <LogoMark compact />
               <div>
                 <p className="font-display text-2xl leading-none text-[var(--color-ink)]">Voluntaco</p>
                 <p className="mt-1 text-xs uppercase tracking-[0.24em] text-[var(--color-muted)]">
@@ -56,10 +56,10 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <h1 className="mt-10 font-display text-6xl leading-[0.92] tracking-[-0.06em] text-[var(--color-ink)]">
+            <h1 className="mt-6 font-display text-[clamp(2rem,3vw,3rem)] leading-[0.98] tracking-[-0.06em] text-[var(--color-ink)]">
               Inicia sesión para convertir interés en impacto.
             </h1>
-            <p className="mt-6 max-w-lg text-lg text-center leading-8 text-[var(--color-muted)]">
+            <p className="mt-4 max-w-lg text-base text-center leading-6 text-[var(--color-muted)]">
                 <span className="font-semibold text-[#1FA26B]">¿No tienes cuenta? </span>
                 Crea una y únete a miles de 
                 <span className="font-semibold text-[#1FA26B]"> voluntarios </span>
@@ -69,7 +69,7 @@ export default function LoginPage() {
             </p>
           </div>
 
-          <div className="relative mt-1 z-10 grid gap-4 md:grid-cols-2">
+          <div className="relative mt-5 z-10 grid gap-3 md:grid-cols-2">
             {accountTypes.map((account) => (
               account.title === "Voluntario" ? (
                 <Link
@@ -82,7 +82,7 @@ export default function LoginPage() {
                     <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-muted)]">
                       {account.badge}
                     </p>
-                    <div className="mt-3 mb-0.5">
+                    <div className="mx-auto mt-2 mb-0.5 w-32">
                       <account.Icon />
                     </div>
                     <p className="mt-1.5 flex-1 text-sm leading-6 text-[var(--color-muted)]">
@@ -114,7 +114,7 @@ export default function LoginPage() {
                     >
                       {account.badge}
                     </p>
-                    <div className="mt-3 mb-0.5">
+                    <div className="mx-auto mt-2 mb-0.5 w-32">
                       <account.Icon />
                     </div>
                     <p
@@ -140,27 +140,27 @@ export default function LoginPage() {
           </div>
         </section>
 
-        <section className="glass-panel mx-auto flex w-full max-w-[480px] flex-col justify-center rounded-[1.85rem] px-5 py-7 shadow-[0_28px_80px_rgba(31,82,66,0.14)] sm:px-7 sm:py-9 lg:px-8">
+        <section className="glass-panel mx-auto flex w-full max-w-[420px] flex-col justify-center rounded-[1.85rem] px-5 py-5 shadow-[0_28px_80px_rgba(31,82,66,0.14)] sm:px-6">
           <div className="mx-auto flex w-full max-w-[360px] flex-col items-center text-center">
             <div className="lg:hidden">
-              <LogoMark />
+              <LogoMark compact />
             </div>
             <div className="hidden lg:block">
               <LogoMark compact />
             </div>
 
-            <p className="mt-3 font-display text-[2rem] leading-none tracking-[-0.04em] text-[var(--color-ink)]">
+            <p className="mt-2 font-display text-2xl leading-none tracking-[-0.04em] text-[var(--color-ink)]">
               Voluntaco
             </p>
-            <h2 className="mt-6 max-w-[14ch] font-display text-[2.35rem] leading-[0.95] tracking-[-0.05em] text-[var(--color-ink)] sm:text-[2.8rem]">
+            <h2 className="mt-4 max-w-[14ch] font-display text-3xl leading-none tracking-[-0.05em] text-[var(--color-ink)] sm:text-[2rem]">
               Inicia sesión para impactar
             </h2>
-            <p className="mt-3 text-[0.95rem] leading-7 text-[var(--color-muted)]">
+            <p className="mt-2 text-sm leading-6 text-[var(--color-muted)]">
               O crea una cuenta si eres nuevo
             </p>
 
-            <form action={formAction} className="mt-7 grid w-full gap-3.5" noValidate>
-              <label className="flex items-center gap-3 rounded-full border border-[var(--color-line)] bg-white px-4 py-3.5 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.85)]">
+            <form action={formAction} className="mt-5 grid w-full gap-3" noValidate>
+              <label className="flex items-center gap-3 rounded-full border border-[var(--color-line)] bg-white px-4 py-2.5 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.85)]">
                 <span className="text-lg text-[var(--color-ink)]" aria-hidden="true">
                   ◔
                 </span>
@@ -177,11 +177,11 @@ export default function LoginPage() {
                     }))
                   }
                   disabled={isPending}
-                  className="w-full bg-transparent text-base text-[var(--color-ink)] outline-none placeholder:text-[#8a8f8a] disabled:opacity-50"
+                  className="min-w-0 w-full bg-transparent text-base text-[var(--color-ink)] outline-none placeholder:text-[#8a8f8a] disabled:opacity-50"
                 />
               </label>
 
-              <label className="flex items-center gap-3 rounded-full border border-[var(--color-line)] bg-white px-4 py-3.5 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.85)]">
+              <label className="flex items-center gap-3 rounded-full border border-[var(--color-line)] bg-white px-4 py-2.5 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.85)]">
                 <span className="text-lg text-[var(--color-ink)]" aria-hidden="true">
                   ⚿
                 </span>
@@ -198,7 +198,7 @@ export default function LoginPage() {
                     }))
                   }
                   disabled={isPending}
-                  className="w-full bg-transparent text-base text-[var(--color-ink)] outline-none placeholder:text-[#8a8f8a] disabled:opacity-50"
+                  className="min-w-0 w-full bg-transparent text-base text-[var(--color-ink)] outline-none placeholder:text-[#8a8f8a] disabled:opacity-50"
                 />
                 <button
                   type="button"
@@ -221,21 +221,21 @@ export default function LoginPage() {
               <SubmitButton
                 label="Iniciar Sesion"
                 pendingLabel="Iniciando sesion..."
-                className="mt-1 cursor-pointer rounded-full bg-[var(--color-accent)] px-5 py-3.5 text-base font-semibold text-[var(--color-accent-foreground)] shadow-[0_18px_36px_rgba(32,162,107,0.22)] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-70"
+                className="mt-1 cursor-pointer rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-base font-semibold text-[var(--color-accent-foreground)] shadow-[0_18px_36px_rgba(32,162,107,0.22)] transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-70"
               />
             </form>
 
-            <div className="mt-7 flex w-full items-center gap-4 text-[var(--color-ink)]">
+            <div className="mt-5 flex w-full items-center gap-4 text-[var(--color-ink)]">
               <span className="h-px flex-1 bg-[var(--color-line)]" />
               <span className="text-xl leading-none">ó</span>
               <span className="h-px flex-1 bg-[var(--color-line)]" />
             </div>
 
-            <div className="mt-5 flex items-center justify-center gap-4">
+            <div className="mt-4 flex items-center justify-center gap-3">
               {socialProviders.map((provider) => (
                 <button
                   key={provider.name}
-                  className="flex h-14 w-14 items-center justify-center rounded-full border border-[var(--color-line)] bg-white text-[1.7rem] shadow-[0_10px_24px_rgba(31,82,66,0.08)] transition hover:-translate-y-0.5"
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-line)] bg-white text-2xl shadow-[0_10px_24px_rgba(31,82,66,0.08)] transition hover:-translate-y-0.5"
                   aria-label={`Continuar con ${provider.name}`}
                 >
                   <span className={provider.accent}>{provider.mark}</span>
@@ -243,7 +243,7 @@ export default function LoginPage() {
               ))}
             </div>
 
-            <p className="mt-7 text-[0.95rem] text-[var(--color-ink)]">
+            <p className="mt-5 text-sm text-[var(--color-ink)]">
               No tienes cuenta? <a href="#" className="font-semibold">Registrate</a>
             </p>
           </div>
@@ -252,4 +252,3 @@ export default function LoginPage() {
     </main>
   );
 }
-
